@@ -1,3 +1,184 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>What Should I Watch?</title>
+    
+
+
+<style>
+     
+
+ *{
+  margin: 0;
+  padding: 0;
+  box-sizing: bordder-box;
+}
+
+body{
+  background-color: #141414;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+    background-color: #1f1f1f;
+    padding: 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, #e50914, #ff6b6b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p {
+    color: #aaaaaa;
+    margin-bottom: 24px;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 15px;
+    resize: none;
+    margin-bottom: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: #e50914;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #f40612;
+    transition: background-color 0.2s ease;
+}
+
+#result {
+    margin-top: 24px;
+    color: #eeeeee;
+    font-size: 15px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    border-top: 1px solid #333333;
+    padding-top: 20px;
+}
+
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #333333;
+    border-top: 4px solid #e50914;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 20px auto;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+	
+    </style>
+  
+
+</head>
+  <body>
+    <!-- PASTE YOUR ENTIRE HTML BODY CONTENT HERE -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>What Should I Watch?</title>
+  </head>
+  
+  <body>
+    <div class="container">
+        <h1>What Should I Watch Tonight?</h1>
+        <p>Tell me your mood and I'll find something perfect for you.</p>
+        <textarea id="moodInput" placeholder="e.g. I just finished Breaking Bad and feel empty..."></textarea>
+        <button id="askBtn">Find Something 🎬</button>
+        <div id="loader" class="loader hidden"></div>
+        <div id="result"></div>
+    </div>
+</body>
+
+
+  </html>
+    
+
+    <script>
+
+      /* PASTE YOUR ENTIRE JS HERE */
+
+const button = document.getElementById("askBtn");
+const input = document.getElementById("moodInput");
+const result = document.getElementById("result");
+
+button.addEventListener("click", async function() {
+    const mood = input.value;
+    
+    if (!mood) {
+        result.innerText = "Tell me your mood first!";
+        return;
+    }
+
+    result.innerText = "";
+    document.getElementById("loader").classList.remove("hidden");
+    button.disabled = true;
+    button.innerText = "Loading...";
+
+    const response = await fetch("http://localhost:3000/recommend", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ mood: mood })
+    });
+
+    const data = await response.json();
+    document.getElementById("loader").classList.add("hidden");
+    button.disabled = false;
+    button.innerText = "Find Something 🎬";
+    result.innerText = data.result;
+});
+
+
+
+    </script>
+  </body>
+=======
 <!DOCTYPE html>
 <html>
   <head>
@@ -190,4 +371,5 @@ button.addEventListener("click", async function() {
 
     </script>
   </body>
+>>>>>>> 54a2827c971f4047e9c14f5714fb3beb8cf4beae
 </html>
